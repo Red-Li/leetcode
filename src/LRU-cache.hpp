@@ -8,15 +8,13 @@ class LRUCache{
     typedef std::pair<int, std::list<int>::iterator> record;
 
     std::list<int> order_;
-    std::map<int, record> kv_;
+    std::map<int, record> kv_; //hash map should be better
     int capacity_;
 
-    void refreshKey(int key)
+    void refreshKey(std::map<int, record>::iterator it)
     {
-        std::map<int, record>::iterator it = kv_.find(key);
-
         order_.erase(it->second.second);
-        order_.push_back(key);
+		order_.push_back(it->first);
 
         std::list<int>::iterator lend = order_.end();
         it->second.second = --lend;
@@ -29,9 +27,9 @@ public:
     int get(int key) {
         std::map<int, record>::iterator it = kv_.find(key);
         if(it != kv_.end()){
-            refreshKey(key);
+            refreshKey(it);
 
-            return kv_.at(key).first;
+            return it->second.first;
         }
         else{
             return -1;
@@ -54,7 +52,7 @@ public:
             }
         }
         else{
-            refreshKey(key);
+            refreshKey(it);
             it->second.first = value;
         }
     }
