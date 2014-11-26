@@ -51,7 +51,6 @@ TEST_F(PermutationSeqTest, test)
     EXPECT_EQ(sol.getPermutation(3, 4), "231");
     EXPECT_EQ(sol.getPermutation(3, 5), "312");
     EXPECT_EQ(sol.getPermutation(3, 6), "321");
-    EXPECT_EQ(sol.getPermutation(9, 296662), "321");
 
 
 }
