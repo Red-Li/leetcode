@@ -20,6 +20,7 @@ namespace sym_tree{
 #include "symmetric-tree.hpp"
 }
 
+
 using namespace sym_tree;
 
 class SymmetricTreeTest : public testing::Test
